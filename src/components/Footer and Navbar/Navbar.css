@@ -1,0 +1,14 @@
+nav {
+    font-family: 'Roboto', sans-serif;
+}
+
+.transition {
+    transition: background .5s ease-in-out,padding .5s ease-in-out;
+}
+
+nav>li {
+    float: left;
+    position: relative;
+    display: block;
+}
+
