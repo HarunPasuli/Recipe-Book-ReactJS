@@ -1,5 +1,6 @@
 import Logo from "../../assets/images/Logo.png";
-import Li from "../Li/Li";
+import { NavLink } from "react-router-dom";
+import "./navbar.css";
 
 const Navbar = () => {
 	return (
@@ -24,9 +25,9 @@ const Navbar = () => {
 					/>
 				</div>
 				<ul className="flex space-x-8 text-xs uppercase mt-[0.75rem] mr-8">
-					<Li href="/">Home</Li>
-					<Li href="#">About</Li>
-					<Li href="#">Contact</Li>
+					<NavLink to="/">Home</NavLink>
+					<NavLink to="/about">About</NavLink>
+					<NavLink to="/contact">Contact</NavLink>
 				</ul>
 				{/* Add responsive button/menu here */}
 			</div>

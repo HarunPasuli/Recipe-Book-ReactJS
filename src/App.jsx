@@ -1,11 +1,22 @@
-import Navbar from "./components/Footer and Navbar/Navbar";
-import Footer from "./components/Footer and Navbar/Footer";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import NoPage from "./pages/NoPage";
 
 function App() {
 	return (
 		<>
-			<Navbar />
-			<Footer />
+			<BrowserRouter>
+				<Routes>
+					<Route index element={<Home />} />
+					{/* Nested route for the About page */}
+					<Route path="/home" element={<Home />} />
+					<Route path="/about" element={<About />} />
+					<Route path="/contact" element={<Contact />} />
+					<Route path="*" element={<NoPage />} />
+				</Routes>
+			</BrowserRouter>
 		</>
 	);
 }
