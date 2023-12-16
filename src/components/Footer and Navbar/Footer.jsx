@@ -2,7 +2,7 @@ import github from "../../assets/images/github.png";
 
 const Footer = () => {
 	return (
-		<footer className="border-t border-gray-300 bg-[#F5F5F5] text-[#404040] text-center p-5 relative pt-10 pb-10">
+		<footer className="border-t border-gray-300 bg-[#F5F5F5] text-[#404040] text-center p-5 relative pt-10 pb-10 md:mt-6">
 			<a
 				href="https://www.github.com/harunpasuli"
 				target="_blank"

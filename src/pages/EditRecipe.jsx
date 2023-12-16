@@ -1,6 +1,6 @@
 import Navbar from "../components/Footer and Navbar/Navbar";
 import Footer from "../components/Footer and Navbar/Footer";
-import ShowRecipes from "./ShowRecipes";
+import Edit from "../components/RecipeTable/Edit";
 
 const Home = () => {
 	return (
@@ -18,7 +18,7 @@ const Home = () => {
 						You can view all of your recipes here
 					</p>
 				</div>
-				<ShowRecipes />
+				<Edit />
 			</div>
 			<Footer />
 		</>
