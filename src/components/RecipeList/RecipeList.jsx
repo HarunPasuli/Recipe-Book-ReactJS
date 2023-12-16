@@ -1,25 +1,29 @@
+import { Link } from "react-router-dom";
+
 const RecipeList = ({ recipes }) => {
 	return (
 		<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
 			{recipes.map((recipe) => (
-				<div
-					key={recipe.title}
-					className="recipe-card p-4 bg-white shadow-md rounded-lg"
-				>
-					<img
-						src={renderImage(recipe.image)}
-						alt="Recipe Image"
-						className="w-full h-40 object-cover rounded-t-lg"
-					/>
-					<div className="p-4">
-						<h3 className="text-xl font-bold mb-2">{recipe.title}</h3>
-						<p className="text-gray-700 mb-4">{recipe.description}</p>
-						{/* <ul className="text-sm text-gray-600">
+				<Link key={recipe.title} to={`/recipe/${recipe.title}`}>
+					<div
+						key={recipe.title}
+						className="recipe-card p-4 bg-white shadow-md rounded-lg"
+					>
+						<img
+							src={renderImage(recipe.image)}
+							alt="Recipe Image"
+							className="w-full h-40 object-cover rounded-t-lg"
+						/>
+						<div className="p-4">
+							<h3 className="text-xl font-bold mb-2">{recipe.title}</h3>
+							<p className="text-gray-700 mb-4">{recipe.description}</p>
+							{/* <ul className="text-sm text-gray-600">
 							<li>Ingredients: {recipe.ingredients}</li>
 							<li>Instructions: {recipe.instructions}</li>
 						</ul> */}
+						</div>
 					</div>
-				</div>
+				</Link>
 			))}
 		</div>
 	);

@@ -5,7 +5,12 @@ const NoPage = () => {
 	return (
 		<>
 			<Navbar />
-			<h1 className="font-bold underline-offset-8">Error 404: Not Found</h1>
+			<div className="flex text-center items-center justify-center flex-col min-h-screen">
+				<h1 className="font-bold underline-offset-8 text-9xl">
+					Error 404: Not Found
+				</h1>
+			</div>
+
 			<Footer />
 		</>
 	);

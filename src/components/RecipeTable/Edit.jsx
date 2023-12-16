@@ -1,95 +1,138 @@
+// Import useNavigate from react-router-dom
 import { useState, useEffect } from "react";
+import CommonInput from "../Form/CommonInput";
 import { useParams, useNavigate } from "react-router-dom";
 
-const Edit = ({ recipes }) => {
+const Edit = () => {
 	const { title } = useParams();
-	const history = useNavigate();
+	const navigate = useNavigate(); // Replace useHistory with useNavigate
+
 	const [editedRecipe, setEditedRecipe] = useState({
 		title: "",
 		description: "",
 		ingredients: "",
 		instructions: "",
-		image: null, // Add image state if needed
+		image: null,
+		imageUrl: "",
 	});
 
 	useEffect(() => {
-		// Find the recipe based on the title from the URL params
-		const foundRecipe = recipes.find((recipe) => recipe.title === title);
+		// Fetch data or set initial state based on the title parameter
+		// Example: api.get(`/recipes/${title}`).then((data) => setEditedRecipe(data));
 
-		if (foundRecipe) {
-			setEditedRecipe(foundRecipe);
-		} else {
-			// Redirect to home if the recipe is not found
-			history.push("/home");
-		}
-	}, [recipes, title, history]);
+		// For simplicity, setting initial state
+		setEditedRecipe({
+			title: title,
+			description: "Sample description",
+			ingredients: "Sample ingredients",
+			instructions: "Sample instructions",
+			image: null,
+			imageUrl: "https://via.placeholder.com/150", // Sample image URL
+		});
+	}, [title]);
 
 	const handleChange = (e) => {
-		const { name, value } = e.target;
-		setEditedRecipe((prevRecipe) => ({
-			...prevRecipe,
-			[name]: value,
-		}));
+		const { name, value, files } = e.target;
+
+		if (name === "image" && files && files[0]) {
+			const reader = new FileReader();
+
+			reader.onloadend = () => {
+				setEditedRecipe((prevRecipe) => ({
+					...prevRecipe,
+					imageUrl: reader.result,
+					image: files[0],
+				}));
+			};
+
+			reader.readAsDataURL(files[0]);
+		} else {
+			setEditedRecipe((prevRecipe) => ({
+				...prevRecipe,
+				[name]: value,
+			}));
+		}
 	};
 
-	const handleImageChange = (e) => {
-		const imageFile = e.target.files[0];
-		setEditedRecipe((prevRecipe) => ({
-			...prevRecipe,
-			image: imageFile,
-		}));
-	};
-
-	const handleSubmit = (e) => {
+	const handleFormSubmit = (e) => {
 		e.preventDefault();
 
-		// Update the existing recipe in the recipes array
-		const updatedRecipes = recipes.map((recipe) =>
-			recipe.title === title ? editedRecipe : recipe
+		// Simulate the update locally (replace with your actual logic)
+		const existingRecipes = JSON.parse(localStorage.getItem("recipes")) || [];
+		const updatedRecipes = existingRecipes.map((r) =>
+			r.title === title ? editedRecipe : r
 		);
 
-		// Update local storage
+		// Save the updated recipes to local storage
 		localStorage.setItem("recipes", JSON.stringify(updatedRecipes));
 
-		// Redirect back to the recipe list
-		history.push("/home");
+		// For simplicity, navigate to the recipes list page
+		navigate("/my-recipes");
 	};
 
 	return (
-		<div className="max-w-3xl mx-auto mt-8">
-			<h2 className="text-2xl font-bold mb-4">Edit Recipe</h2>
-			<form onSubmit={handleSubmit}>
-				{/* Your input fields go here */}
-				{/* Example: */}
-				<label>Title:</label>
-				<input
+		<div className="flex align-center items-center justify-center mt-24">
+			<form onSubmit={handleFormSubmit} className="space-y-8 w-[50vw]">
+				<label className="block text-sm text-[#404040]">Title:</label>
+				<CommonInput
 					type="text"
 					name="title"
 					value={editedRecipe.title}
 					onChange={handleChange}
+					placeholder="Enter title"
 					required
 				/>
-				{/* Add other input fields as needed */}
-				<label>Description:</label>
-				<input
+
+				<label className="block text-sm text-[#404040]">Description:</label>
+				<CommonInput
 					type="text"
 					name="description"
 					value={editedRecipe.description}
 					onChange={handleChange}
+					placeholder="Enter description"
 					required
 				/>
-				{/* Image upload */}
-				<label>Image:</label>
+
+				<label className="block text-sm text-[#404040]">Ingredients:</label>
+				<CommonInput
+					type="textarea"
+					name="ingredients"
+					value={editedRecipe.ingredients}
+					onChange={handleChange}
+					placeholder="Enter ingredients"
+					required
+				/>
+
+				<label className="block text-sm text-[#404040]">Image:</label>
 				<input
 					type="file"
 					name="image"
-					onChange={handleImageChange}
+					onChange={handleChange}
 					accept="image/*"
+					className="block p-2.5 w-full text-sm text-[#404040] bg-[#F5F5F5] rounded-lg shadow-sm border border-gray-300 focus:ring-[#008AFF] focus:border-[#008AFF]"
 				/>
-				{/* Add other input fields and buttons as needed */}
+
+				{editedRecipe.imageUrl && (
+					<img
+						src={editedRecipe.imageUrl}
+						alt="Recipe"
+						className="recipe-image-preview"
+					/>
+				)}
+
+				<label className="block text-sm text-[#404040]">Instructions:</label>
+				<CommonInput
+					type="textarea"
+					name="instructions"
+					value={editedRecipe.instructions}
+					onChange={handleChange}
+					placeholder="Enter instructions"
+					required
+				/>
+
 				<button
 					type="submit"
-					className="bg-green-500 text-white px-4 py-2 rounded"
+					className="py-3 px-5 text-sm font-medium text-white rounded-lg bg-[#008AFF] sm:w-fit hover:bg-[#006FD6] focus:ring-4 focus:outline-none focus:ring-[#004182]"
 				>
 					Save Changes
 				</button>

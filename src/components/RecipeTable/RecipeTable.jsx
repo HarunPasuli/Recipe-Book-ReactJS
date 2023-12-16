@@ -1,4 +1,5 @@
 import RecipeList from "../RecipeList/RecipeList";
+import { Link } from "react-router-dom";
 
 const RecipeTable = ({ recipes, handleEdit, handleDelete }) => {
 	return (
@@ -10,19 +11,19 @@ const RecipeTable = ({ recipes, handleEdit, handleDelete }) => {
 					<th className="p-2 border border-gray-300">Actions</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody className="max-w-[100vw]">
 				{recipes.map((recipe, index) => (
 					<tr key={`${recipe.title}-${index}`}>
 						<td className="p-2 border border-gray-300">{recipe.title}</td>
 						<td className="p-2 border border-gray-300">{recipe.description}</td>
 						<td className="p-2 border border-gray-300">
 							<div className="w-[10vw]">
-								<button
-									onClick={() => handleEdit(recipe)}
+								<Link
+									to={`/recipe/edit/${recipe.title}`}
 									className="bg-blue-500 text-white px-4 py-2 rounded mr-2 hover:bg-blue-700"
 								>
 									Edit
-								</button>
+								</Link>
 								<button
 									onClick={() => handleDelete(recipe)}
 									className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700"
