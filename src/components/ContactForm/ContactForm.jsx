@@ -22,15 +22,11 @@ const ContactForm = () => {
 
 	const form = useRef();
 
+	// fill in with your own ids
 	const sendEmail = (e) => {
 		e.preventDefault();
 		emailjs
-			.sendForm(
-				"service_e17k8jr",
-				"template_yz9zcmj",
-				form.current,
-				"LFI7_PUvhGitg8sBH"
-			)
+			.sendForm("service_id", "template_id", form.current, "global_key")
 			.then(
 				(result) => {
 					console.log(result.text);
