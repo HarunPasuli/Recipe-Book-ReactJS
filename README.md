@@ -12,12 +12,11 @@ This website is just made to improve my CRUD with ReactJS as it's my first CRUD 
 
 # To install this project you need to do the following:
 1. Clone the project
-2. cd into `Recipe-Book-ReactJS`
-3. run `npm install` or just `npm i` for Vite
-4. run `npm install -D tailwindcss postcss autoprefixer` and `npx tailwindcss init -p` for Tailwind
-5. Might need to run `npm install react-toastify` and `npm install @emailjs/browser` for notifications and email JS
-6. if you decide to use the contact form then you need to create an EmailJS form and fill in the info in ContactForm.jsx
-7. run `npm run dev` open localhost:5173 and enjoy! :D
+2. run `npm install` or just `npm i` for Vite
+3. run `npm install -D tailwindcss postcss autoprefixer` and `npx tailwindcss init -p` for Tailwind
+4. Might need to run `npm install react-toastify` and `npm install @emailjs/browser` for notifications and email JS
+5. if you decide to use the contact form then you need to create an EmailJS form and fill in the info in ContactForm.jsx
+6. run `npm run dev` open localhost:5173 and enjoy! :D
 
 ## How to tweak this project for your own uses
 Since this is a personal project that was made to improve my Laravel knowledge, I'd encourage you to clone and rename this project for your own purposes.
