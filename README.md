@@ -19,7 +19,7 @@ This website is just made to improve my CRUD with ReactJS as it's my first CRUD 
 6. run `npm run dev` open localhost:5173 and enjoy! :D
 
 ## How to tweak this project for your own uses
-Since this is a personal project that was made to improve my Laravel knowledge, I'd encourage you to clone and rename this project for your own purposes.
+Since this is a personal project that was made to improve my ReactJS knowledge as a beginner, I'd encourage you to clone and rename this project for your own purposes.
 
 # Bugs:
 ## Images not working 
